@@ -1,6 +1,8 @@
 <?php
 
 // use Illuminate\Http\Request;
+
+use App\Task;
 use Illuminate\Http\Request;
 
 /*
@@ -28,5 +30,10 @@ Route::post('/task', function (Request $request) {
             ->withInput()
             ->withErrors($validator);
     };
+
+ $task = new Task;
+ $task->name = $request->name;
+ $task->save();
+
     return redirect('/');
 });
