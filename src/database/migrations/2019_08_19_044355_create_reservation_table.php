@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Symfony\Component\Console\Helper\Table;
 
 class CreateReservationTable extends Migration
 {
@@ -13,12 +14,14 @@ class CreateReservationTable extends Migration
      */
     public function up()
     {
-        Schema::create('reservation', function (Blueprint $table) {
+        Schema::create('reservations', function (Blueprint $table) {
            $table->bigIncrements('id');
            $table->string('name');
-           $table->dateTime('startdate');
-           $table->dateTime('end_date');
-
+           $table->dateTime('date');
+           $table->dateTime('start');
+           $table->dateTime('end');
+           $table->string('hotel_name');
+           $table->timestamps();
 
             //
 
@@ -32,9 +35,8 @@ class CreateReservationTable extends Migration
      */
     public function down()
     {
-        Schema::table('reservation', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('reservations');
+
     }
 }
 

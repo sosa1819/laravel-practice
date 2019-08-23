@@ -1,5 +1,9 @@
 <?php
 
+
+
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,7 +19,7 @@ use App\Reservation;
 use Illuminate\Http\Request;
 
 Route::get('/', function () {
-    $reservations = array();
+    $reservations = Reservation::orderBy('created_at', 'asc')->get();
     return view('reservation',['reservations'=> $reservations]);
 
 });
@@ -51,9 +55,3 @@ Route::post('/reservations', function (Request $request) {
     return redirect('/');
 });
 
-define('DATABASE_NAME','reservation');
-define('DATABASE_USER','root');
-define('DATABASE_PASSWORD','C');
-define('DATABASE_HOST','localhost');
-
-define('PDO_DSN','mysql:dbname=' . DATABASE_NAME .';host=' . DATABASE_HOST . '; charset=utf8');
